@@ -1,9 +1,9 @@
 const express = require("express");
 const storeRoutes = require("./routes/storeRoutes");
 const uploadProduct = require("./routes/uploadProduct");
-const ownerRoutes =require("./routes/ownerRoutes");
+const ownerRoutes = require("./routes/ownerRoutes");
 const productRoutes = require("./routes/productRoutes");
-
+const categoryRoutes = require("./routes/categoryRoutes");
 
 const app = express();
 
@@ -23,5 +23,6 @@ app.use("/api/stores", storeRoutes);
 app.use("/api/upload", uploadProduct);
 app.use("/api", ownerRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/categories", categoryRoutes);
 
 module.exports = app;

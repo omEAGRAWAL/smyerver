@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 // Store Schema
 const storeSchema = new mongoose.Schema({
@@ -8,11 +8,11 @@ const storeSchema = new mongoose.Schema({
   settings: {
     currency: String,
     language: String,
-    timezone: String
+    timezone: String,
   },
-  
+
   createdAt: Date,
-  updatedAt: Date
+  updatedAt: Date,
 });
 
 // User Schema
@@ -28,22 +28,21 @@ const userSchema = new mongoose.Schema({
     city: String,
     state: String,
     postalCode: String,
-    country: String
+    country: String,
   },
   createdAt: Date,
-  updatedAt: Date
+  updatedAt: Date,
 });
 
 //category of all products in thats store
 const categorySchema = new mongoose.Schema({
-  //it shoul work lookups for
-  
+  //it shoul work lookups for products
   storeId: mongoose.Schema.Types.ObjectId,
-
+  Image: String,
   name: String,
   description: String,
   createdAt: Date,
-  updatedAt: Date
+  updatedAt: Date,
 });
 
 // Product Schema
@@ -56,19 +55,19 @@ const productSchema = new mongoose.Schema({
   sku: String,
   inventory: {
     stock: Number,
-    lowStockThreshold: Number
+    lowStockThreshold: Number,
   },
   images: [String],
-  categories:[mongoose.Schema.Types.ObjectId]  , //array of categoriesid ,
+  categories: [mongoose.Schema.Types.ObjectId], //array of categoriesid ,
   tags: [String],
   variants: [
     {
       name: String,
-      options: [String]
-    }
+      options: [String],
+    },
   ],
   createdAt: Date,
-  updatedAt: Date
+  updatedAt: Date,
 });
 
 // Order Schema
@@ -79,8 +78,8 @@ const orderSchema = new mongoose.Schema({
     {
       productId: mongoose.Schema.Types.ObjectId,
       quantity: Number,
-      price: Number
-    }
+      price: Number,
+    },
   ],
   total: Number,
   currency: String,
@@ -92,10 +91,10 @@ const orderSchema = new mongoose.Schema({
     city: String,
     state: String,
     postalCode: String,
-    country: String
+    country: String,
   },
   createdAt: Date,
-  updatedAt: Date
+  updatedAt: Date,
 });
 
 // Page Schema
@@ -106,7 +105,7 @@ const pageSchema = new mongoose.Schema({
   slug: String,
   visibility: Boolean,
   createdAt: Date,
-  updatedAt: Date
+  updatedAt: Date,
 });
 
 // Cart Schema
@@ -116,11 +115,11 @@ const cartSchema = new mongoose.Schema({
   items: [
     {
       productId: mongoose.Schema.Types.ObjectId,
-      quantity: Number
-    }
+      quantity: Number,
+    },
   ],
   createdAt: Date,
-  updatedAt: Date
+  updatedAt: Date,
 });
 
 // Review Schema
@@ -130,9 +129,8 @@ const reviewSchema = new mongoose.Schema({
   rating: Number,
   comment: String,
   createdAt: Date,
-  updatedAt: Date
+  updatedAt: Date,
 });
-
 
 // Indexing
 productSchema.index({ storeId: 1, name: 1 });
@@ -142,11 +140,12 @@ cartSchema.index({ customerId: 1 }, { unique: true });
 
 // Export Models
 module.exports = {
-  Store: mongoose.model('Store', storeSchema),
-  User: mongoose.model('User', userSchema),
-  Product: mongoose.model('Product', productSchema),
-  Order: mongoose.model('Order', orderSchema),
-  Page: mongoose.model('Page', pageSchema),
-  Cart: mongoose.model('Cart', cartSchema),
-  Review: mongoose.model('Review', reviewSchema)
+  Store: mongoose.model("Store", storeSchema),
+  User: mongoose.model("User", userSchema),
+  Product: mongoose.model("Product", productSchema),
+  Order: mongoose.model("Order", orderSchema),
+  Page: mongoose.model("Page", pageSchema),
+  Cart: mongoose.model("Cart", cartSchema),
+  Review: mongoose.model("Review", reviewSchema),
+  category: mongoose.model("category", categorySchema),
 };
