@@ -11,12 +11,21 @@ const app = express();
 app.use(express.json());
 //cors
 const cors = require("cors");
+
+//make it accept from all locations
 app.use(
   cors({
-    origin: "http://localhost:8081",
+    origin: "*",
     credentials: true,
   })
 );
+
+// app.use(
+//   cors({
+//     origin: "http://localhost:8081",
+//     credentials: true,
+//   })
+// );
 
 // Routes
 app.use("/api/stores", storeRoutes);

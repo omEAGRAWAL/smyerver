@@ -66,6 +66,7 @@ const productSchema = new mongoose.Schema({
       options: [String],
     },
   ],
+  likes: Number,
   createdAt: Date,
   updatedAt: Date,
 });
