@@ -12,7 +12,7 @@ app.use(express.json());
 //cors
 const cors = require("cors");
 
-//make it accept from all locations
+// //make it accept from all locations
 app.use(
   cors({
     origin: "*",
@@ -22,7 +22,7 @@ app.use(
 
 // app.use(
 //   cors({
-//     origin: "http://localhost:8081",
+//     origin: "http://localhost:3000",
 //     credentials: true,
 //   })
 // );

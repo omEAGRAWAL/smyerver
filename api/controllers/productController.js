@@ -85,3 +85,78 @@ exports.getProducts = async (req, res) => {
       .json({ error: "Failed to get products. Please try again later." });
   }
 };
+
+//update
+exports.updateProducts = async (req, res) => {
+  const _id = req.params.id;
+
+  const {
+    // _id,
+    storeId,
+    name,
+    description,
+    price,
+    images,
+    categories,
+    tags,
+    variants,
+  } = req.body;
+
+  try {
+    if (!_id) {
+      return res.status(400).json({ error: "Product ID is required." });
+    }
+
+    const updatedProduct = await Product.findByIdAndUpdate(
+      _id,
+      {
+        storeId,
+        name,
+        description,
+        price,
+        images,
+        categories,
+        tags,
+        variants,
+        updatedAt: new Date(),
+      },
+      { new: true } // Returns the updated product
+    );
+
+    if (!updatedProduct) {
+      return res.status(404).json({ error: "Product not found." });
+    }
+
+    res.status(200).json(updatedProduct);
+  } catch (err) {
+    console.error("Error updating product:", err);
+    res
+      .status(500)
+      .json({ error: "Failed to update product. Please try again later." });
+  }
+};
+
+exports.deleteProduct = async (req, res) => {
+  const productId = req.params.id;
+
+  //request url  /api/products/:id
+
+  try {
+    if (!productId) {
+      return res.status(400).json({ error: "Product ID is required." });
+    }
+
+    const deletedProduct = await Product.findByIdAndDelete(productId);
+
+    if (!deletedProduct) {
+      return res.status(404).json({ error: "Product not found." });
+    }
+
+    res.status(200).json({ message: "Product successfully deleted." });
+  } catch (err) {
+    console.error("Error deleting product:", err);
+    res
+      .status(500)
+      .json({ error: "Failed to delete product. Please try again later." });
+  }
+};
