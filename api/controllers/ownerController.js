@@ -38,7 +38,7 @@ exports.ownerSignUp = async (req, res) => {
   } catch (err) {
     res
       .status(500)
-      .json({ error: "Failed to create user. Please try again later." });
+      .json({ error: "Failed to create user. Please try again later."+err });
   }
 };
 

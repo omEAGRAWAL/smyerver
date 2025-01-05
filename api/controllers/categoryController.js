@@ -50,3 +50,18 @@ exports.updateCategory = async (req, res) => {
       .json({ error: "Failed to update category. Please try again later." });
   }
 };
+
+exports.deleteCategory = async (req, res) => {
+
+  try {
+    const { id } = req.params;
+
+    await category.findByIdAndDelete(id);
+    res.status(204).json();
+  } catch (err) {
+    res
+      .status(500)
+      .json({ error: "Failed to delete category. Please try again later." });
+  }
+};
+

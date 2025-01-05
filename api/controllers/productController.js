@@ -65,7 +65,7 @@ exports.createProduct = async (req, res) => {
   } catch (err) {
     res
       .status(500)
-      .json({ error: "Failed to create product. Please try again later." });
+      .json({ error: "Failed to create product. Please try again later." +err});
   }
 };
 

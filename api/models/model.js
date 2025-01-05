@@ -58,7 +58,7 @@ const productSchema = new mongoose.Schema({
     lowStockThreshold: Number,
   },
   images: [String],
-  categories: [mongoose.Schema.Types.ObjectId], //array of categoriesid ,
+  categories: [String], //array of categoriesid ,
   tags: [String],
   variants: [
     {
